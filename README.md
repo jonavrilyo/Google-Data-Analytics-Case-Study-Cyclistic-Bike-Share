@@ -1,6 +1,6 @@
 # Cyclistic Bike-Share Analysis: Converting Casual Riders into Members
 ## Google Data Analytics Capstone Project  
-I am a junior analyst working for Cyclistic, a bike-share company in Chicago. A fictional company based on the Divvy bike-share system in the Chicago metropolitan area.
+I am a junior data analyst working for Cyclistic, a bike-share company in Chicago. A fictional company based on the Divvy bike-share system in the Chicago metropolitan area.
 ## Tool Used
 Excel, DAX Studio, and RStudio
 ## Ask Phase
@@ -23,11 +23,12 @@ Excel, DAX Studio, and RStudio
 ## Process Phase
 - I used Excel Power Query to transform and combine the 12 months of data.
 - To avoid the limitations of Excel, the dataset was loaded into the data model as a connection. Then, using DAX Studio—which detects the data model—I exported the dataset as a new CSV file named *'cyclistic_full_year.csv.'*
+- Further data manipulation and cleaning were done in R Studio. Please see the Markdown file.
 ## Key Findings
 - Although the number of members nearly doubles that of casual riders, the total ride length between the two groups isn’t as significant as expected.
 - Casual riders had a much longer average ride length than members, which helps explain the rather close difference in the total ride length.
   - Casual riders using classic bikes had an average ride length twice as long as that of members using classic bikes.
-  - Day passes provide casual riders with unlimited 3-hour classic bike rides within a 24-hour period.
+  - Day passes provide casual riders with unlimited 3-hour classic bike rides within a 24-hour period, which helps explain the large discrepancy.
 - Casual riders were more active during quarters 2 and 3 of 2023.
   - Casual riders were more active on the weekends, possibly committing their time to leisure or exercise.
 ## Top Recommendations
