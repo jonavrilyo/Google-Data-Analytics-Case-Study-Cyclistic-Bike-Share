@@ -1,6 +1,6 @@
 Cyclistic Bike-Share
 ================
-Jonathan Avril
+Jonathan Avril  
 2024-03-16
 
 ## Install & Load Packages
@@ -16,7 +16,7 @@ install.packages("hms")
 visualizations.  
 *skimr* for additional summary statistics.  
 *here* for easy file referencing.  
-*hms* to ease the processes involving date times and duration.
+*hms* to ease the processes involving date times and duration.  
 
 ``` r
 library(tidyverse)
@@ -32,7 +32,7 @@ trip data in 2023.
 `cyclistic_2023 <- read_csv("cyclistic_full_year.csv")`
 
 ``` r
-# Data summarization:
+# Dataset summarization:
 skim_without_charts(cyclistic_2023)
 ```
 
@@ -73,18 +73,15 @@ Since Cyclistic is a fictional company based on the Divvy bike share
 system, Divvy’s policy and rules will be used to determine the
 importance of certain records compared to others.  
 This section will also focus on removing data that may be ineffective in
-the analysis as well as address NA/missing values.
+the analysis as well as address NA/missing values.  
 
 ``` r
-# Adding ride_length and day_of_week as new columns to help with the analysis.
-# The month of January and November had no additional seconds in the start time
-# and end time, but the rest did.  As a result, calculating ride_length for the
-# month of January and November resulted in no decimal places. However, the
-# other months did.  Upon further inspection, the format for datetime in the
-# January and November CSV files were not consistent with the rest.  Utilizing
-# Power Query beforehand to check and fix data types proved useful.  Using
-# as_hms() to return 'hours, minutes, and seconds' as the format for ride
-# length.
+# Adding the ride length and day of week as new columns to help with the analysis.
+# The months of January and November had no additional seconds in the start time and end time, but the rest did.
+# As a result, calculating the ride length for the months of January and November resulted in no decimal places. However, the other months did.
+# Upon further inspection, the format for datetime in the January and November CSV files were not consistent with the rest.
+# Utilizing Power Query beforehand to check and fix data types proved useful.
+# Using as_hms() to return 'hours, minutes, and seconds' as the format for ride length.
 
 cyclistic_2023_v2 <- cyclistic_2023 %>%
     mutate(ride_length = as_hms(end_time - start_time), day_of_week = weekdays(start_time)) %>%
@@ -92,11 +89,9 @@ cyclistic_2023_v2 <- cyclistic_2023 %>%
 ```
 
 ``` r
-# Filter for rows where the ride length is less than or equal to 0 and then
-# sort the results in ascending order.  Includes over 200 rows with negative
-# time values, which is likely due to incorrect data entry; it appears that the
-# end times and start times may have been entered in reverse.  These records
-# will be removed.
+# Filter for rows where the ride length is less than or equal to 0, then sort the results in ascending order.
+# Includes over 200 rows with negative time values, likely due to incorrect data entry; it appears that the end times and start times may have been entered in reverse.
+# These records will be removed.
 
 cyclistic_2023_v2 %>%
     filter(ride_length <= parse_hms("00:00:00")) %>%
@@ -143,14 +138,11 @@ cyclistic_2023_v2 %>%
     # ℹ 9,203 more rows
 
 ``` r
-# Filter for rows where ride length is greater than 0 but less than or equal to
-# 1 minute, and starting and ending stations are different.  This is done to
-# understand the context of certain trips and if ride length makes sense.
-# Google Maps was used to determine the estimated time for certain trips.  Some
-# trips that last for a few seconds or less did not match the eye test or come
-# close to the time estimates on Google Maps.  Trips that were a minute did
-# match the eye test, and the distance made sense. In some cases, the ride
-# length could have been less.
+# Filter for rows where the ride length is greater than 0 but less than or equal to 1 minute, and starting and ending stations are different.
+# This is done to understand the context of certain trips and if ride length makes sense.
+# Google Maps was used to determine the estimated time for certain trips.
+# Some trips that last for a few seconds or less did not match the eye test or come close to the time estimates on Google Maps.
+# Trips that were a minute did match the eye test, and the distance made sense. In some cases, the ride length could have been less.
 
 cyclistic_2023_v2 %>%
     filter(ride_length >= parse_hms("00:00:00") & ride_length <= parse_hms("00:01:00"),
@@ -198,13 +190,13 @@ cyclistic_2023_v2 %>%
     # ℹ 6,238 more rows
 
 ``` r
-# Filter for rows where ride length is greater than or equal to 0, and starting
-# and ending stations are the same.  Why are users ending at the same station,
-# especially trips that last for seconds?  Are users trying out a bike, getting
-# the wrong type and placing it back, or trying out the docking feature?  Are
-# users completing a round trip? Additionally, consideration must be given to
-# rides that last for hours. Bikes not in use should be docked.  Are users
-# exercising? For leisure?
+# Filter for rows where the ride length is greater than or equal to 0, and starting and ending stations are the same.
+# Why are users ending at the same station, especially trips that last for seconds?
+# Are users trying out a bike, getting the wrong type, and placing it back, or trying out the docking feature?
+# Are users completing a round trip?
+# Are users exercising, or just using bikes for leisure?
+# Additionally, extra context must be given to rides that last for hours, but bikes not in use should be docked.
+
 
 cyclistic_2023_v2 %>%
     filter(ride_length >= parse_hms("00:00:00"), starting_station == ending_station) %>%
@@ -251,11 +243,10 @@ cyclistic_2023_v2 %>%
     # ℹ 275,994 more rows
 
 ``` r
-# Filter for rows where ride length greater than or equal to 24 hours and then
-# sort the results by ascending order.  Includes trips lasting more than a day;
-# some even lasting months.  According to Divvy, bikes not returned within a
-# 24-hour period will be deemed lost or stolen until they have been found or
-# returned to a docking station.  Rides over 24 hours will be removed.
+# Filter for rows where the ride length is greater than or equal to 24 hours, and then sort the results by ascending order.
+# Includes trips lasting more than a day; some even lasting months.
+# According to Divvy, bikes not returned within 24 hours will be deemed lost or stolen until they have been found or returned to a docking station.
+# Rides over 24 hours will be removed.
 
 cyclistic_2023_v2 %>%
     filter(ride_length >= parse_hms("24:00:00")) %>%
@@ -476,8 +467,7 @@ cyclistic_2023_v2 %>%
     # ℹ 5,106 more rows
 
 ``` r
-# Electric bikes do not have to start from and/or end at a station or an
-# approved public bike rack.
+# Electric bikes do not need to start from and/or end at a station or an approved public bike rack.
 
 cyclistic_2023_v2 %>%
     filter(is.na(starting_station), bike_type == "electric_bike") %>%
@@ -557,11 +547,12 @@ cyclistic_2023_v2 %>%
     # ℹ 922,029 more rows
 
 ``` r
-# Docked bikes?  According to past trip data, classic bikes were introduced in
-# December of 2020. An improved version of the same 'docked' bike. They both
-# start from and end at a docking station.  Since then, classic bikes have
-# outnumbered docked bikes.  The last month of recorded data on docked bikes
-# was in August of 2023. Phased out.
+# Docked bikes?
+# According to past trip data, classic bikes were introduced in December of 2020.
+# An improved version of the same 'docked' bike?
+# They both start from and end at a docking station.
+# Since then, classic bikes have outnumbered docked bikes.
+# The last month of recorded data on docked bikes was in August of 2023. Phased out.
 
 cyclistic_2023_v2 %>%
     filter(bike_type == "docked_bike") %>%
@@ -686,8 +677,7 @@ cyclistic_2023_v3 %>%
 cyclistic_2023_final <- cyclistic_2023_v3 %>%
     filter(ride_length >= parse_hms("00:01:00"), ride_length < parse_hms("24:00:00"))
 
-# Only 857 rows remaining where classic bikes have a missing starting and/or
-# ending station.
+# Only 857 rows remain where classic bikes have a missing starting and/or ending station.
 
 cyclistic_2023_final %>%
     filter(bike_type == "classic_bike" & (is.na(starting_station) | is.na(ending_station)))
@@ -726,8 +716,7 @@ cyclistic_2023_final %>%
 cyclistic_2023_final <- cyclistic_2023_final %>%
     filter(!(bike_type == "classic_bike" & (is.na(starting_station) | is.na(ending_station))))
 
-# Extracted the month from the start time to prevent issues and simplify coding
-# during the analysis and visualization process.
+# Extracted the month from the start time to prevent issues and simplify coding during the analysis and visualization stages.
 
 cyclistic_2023_final <- cyclistic_2023_final %>%
     mutate(month = month(start_time, label = TRUE))
@@ -1155,9 +1144,10 @@ cyclistic_2023_final %>%
     4 electric_bike member    11'31.592383"   
 
 Casual riders on classic bikes typically ride nearly twice as long as
-members. Day passes and memberships grant free access to bikes for
+members.  
+Day passes and memberships grant free access to bikes for
 limited times within 24 hours, with day passes offering unique unlimited
-3-hour rides.
+3-hour rides for casual riders.
 
 ### Average ride length per month by user type
 
@@ -1380,7 +1370,7 @@ num_casuals_members <- cyclistic_2023_final %>%
     theme_minimal() + theme(panel.grid.major.x = element_blank())
 ```
 
-![](cyclistic_2023_files/figure-gfm/unnamed-chunk-24-1.png)<!-- -->
+![](cyclistic_2023_images/figure-gfm/num_casuals_members.png)<!-- -->
 
 ### The distribution of classic and electric bikes among members and casual riders
 
@@ -1396,7 +1386,7 @@ distribution_bikes <- cyclistic_2023_final %>%
         x = "", y = "Percentage", fill = "Bike Type") + theme_minimal() + theme(panel.grid.major.x = element_blank())
 ```
 
-![](cyclistic_2023_files/figure-gfm/unnamed-chunk-25-1.png)<!-- -->
+![](cyclistic_2023_images/figure-gfm/distribution_bikes.png)<!-- -->
 
 ### The total rides for each month by user type
 
@@ -1409,7 +1399,7 @@ total_rides_month <- cyclistic_2023_final %>%
         x = "", y = "Total Rides", fill = "User Type") + theme_minimal()
 ```
 
-![](cyclistic_2023_files/figure-gfm/unnamed-chunk-26-1.png)<!-- -->
+![](cyclistic_2023_images/figure-gfm/total_rides_month.png)<!-- -->
 
 ### The total rides for each day by user type
 
@@ -1425,7 +1415,7 @@ total_rides_day <- cyclistic_2023_final %>%
         y = "Number of Rides", x = "", fill = "User Type") + theme_minimal()
 ```
 
-![](cyclistic_2023_files/figure-gfm/unnamed-chunk-27-1.png)<!-- -->
+![](cyclistic_2023_images/figure-gfm/total_rides_day.png)<!-- -->
 
 ### The total ride length for each month by user type
 
@@ -1445,7 +1435,7 @@ total_ride_length_month <- cyclistic_2023_final_v2 %>%
     theme_minimal()
 ```
 
-![](cyclistic_2023_files/figure-gfm/unnamed-chunk-29-1.png)<!-- -->
+![](cyclistic_2023_images/figure-gfm/total_ride_length_month.png)<!-- -->
 
 ### The average ride length by user type
 
@@ -1462,7 +1452,7 @@ avg_ride_length_users <- cyclistic_2023_final %>%
     x = "", y = "Ride Length") + guides(fill = "none") + theme(panel.grid.major.x = element_blank())
 ```
 
-![](cyclistic_2023_files/figure-gfm/unnamed-chunk-30-1.png)<!-- -->
+![](cyclistic_2023_images/figure-gfm/avg_ride_length_users.png)<!-- -->
 
 ### The average ride length by bike type and user type
 
@@ -1477,7 +1467,7 @@ avg_ride_length_bike <- cyclistic_2023_final %>%
     theme_minimal() + theme(panel.grid.major.x = element_blank())
 ```
 
-![](cyclistic_2023_files/figure-gfm/unnamed-chunk-31-1.png)<!-- -->
+![](cyclistic_2023_images/figure-gfm/avg_ride_length_bikes.png)<!-- -->
 
 ### The average ride length each month by user type
 
@@ -1492,7 +1482,7 @@ avg_ride_length_month <- cyclistic_2023_final %>%
     theme_minimal() + theme(panel.grid.major.x = element_blank())
 ```
 
-![](cyclistic_2023_files/figure-gfm/unnamed-chunk-32-1.png)<!-- -->
+![](cyclistic_2023_images/figure-gfm/avg_ride_length_months.png)<!-- -->
 
 ### The top 10 starting stations for casual riders
 
@@ -1511,7 +1501,7 @@ top_10_starts_casuals <- cyclistic_2023_final %>%
     axis.ticks.x = element_blank()) + guides(fill = "none")
 ```
 
-![](cyclistic_2023_files/figure-gfm/unnamed-chunk-33-1.png)<!-- -->
+![](cyclistic_2023_images/figure-gfm/top_10_starts_casual.png)<!-- -->
 
 ### The top 10 ending stations for casual riders
 
@@ -1530,4 +1520,4 @@ top_10_ends_casuals <- cyclistic_2023_final %>%
     axis.ticks.x = element_blank()) + guides(fill = "none")
 ```
 
-![](cyclistic_2023_files/figure-gfm/unnamed-chunk-34-1.png)<!-- -->
+![](cyclistic_2023_images/figure-gfm/top_10_ends_casual.png)<!-- -->
