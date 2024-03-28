@@ -13,7 +13,7 @@ Excel, DAX Studio, and RStudio
   - Lily Moreno, director of marketing
   - Cyclistic marketing analytics team
   - Cyclistic executive team
-- Business task: Maximize the number of annual memberships by converting casual riders into members.
+- **Business task**: Maximize the number of annual memberships by converting casual riders into members.
 ## Prepare Phase
 - Downloaded the previous 12 months of Cyclistic trip data, in this case, all of 2023. Each month has its dedicated CSV file.
 - The data is reliable, original, current, and cited.
@@ -23,7 +23,7 @@ Excel, DAX Studio, and RStudio
 ## Process Phase
 - I used Excel Power Query to transform and combine the 12 months of data.
 - To avoid the limitations of Excel, the dataset was loaded into the data model as a connection. Then, using DAX Studio—which detects the data model—I exported the dataset as a new CSV file named *'cyclistic_full_year.csv.'*
-- Further data manipulation and cleaning were done in R Studio. Please see the Markdown file.
+- Further data manipulation and cleaning were done in R Studio. Please see the [Markdown](https://github.com/jonavrilyo/Google-Data-Analytics-Case-Study-Cyclistic-Bike-Share/blob/main/cyclistic_2023.md) file.
 ## Key Findings
 - Although the number of members nearly doubles that of casual riders, the total ride length between the two groups isn’t as significant as expected.
 - Casual riders had a much longer average ride length than members, which helps explain the rather close difference in the total ride length.
@@ -32,4 +32,9 @@ Excel, DAX Studio, and RStudio
 - Casual riders were more active during quarters 2 and 3 of 2023.
   - Casual riders were more active on the weekends, possibly committing their time to leisure or exercise.
 ## Top Recommendations
+- Allocate resources towards increasing marketing campaigns to convert casual riders into members during the spring and summer months.
+- After every unlock and dock of a bike at a top starting and ending station, post an ad within the app highlighting the membership and its benefits.
+- Earn points towards an annual membership by allowing casual riders to complete certain tasks every weekend. Similar to the “Bike Angels” perk, casual riders can find opportunities to help them purchase a membership.
+- Add a second-tier membership, where riders have an hour free with classic bikes, rather than just 45 minutes. This may entice casual riders who regularly use day passes to consider a membership that meets their daily needs.
+- Use TikTok and YouTube shorts to highlight the benefits of memberships quickly. In addition, allow content creators to provide discount codes and free trials. 
 
