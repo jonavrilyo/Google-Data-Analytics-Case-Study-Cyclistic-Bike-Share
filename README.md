@@ -1,3 +1,5 @@
+![](https://images.unsplash.com/photo-1485381771061-e2cbd5317d9c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)
+
 # Cyclistic Bike-Share Analysis: Converting Casual Riders into Members
 ## Google Data Analytics Capstone Project  
 I am a junior data analyst working for Cyclistic, a bike-share company in Chicago. A fictional company based on the Divvy bike-share system in the Chicago metropolitan area.
