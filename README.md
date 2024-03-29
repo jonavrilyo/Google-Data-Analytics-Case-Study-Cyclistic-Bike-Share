@@ -1,8 +1,6 @@
-![](https://images.unsplash.com/photo-1485381771061-e2cbd5317d9c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)
-
-# Cyclistic Bike-Share Analysis: Converting Casual Riders into Members
-## Google Data Analytics Capstone Project  
-I am a junior data analyst working for Cyclistic, a bike-share company in Chicago. A fictional company based on the Divvy bike-share system in the Chicago metropolitan area.
+# Google Data Analytics Capstone Project   
+## Cyclistic Bike-Share Analysis: Converting Casual Riders into Members
+I am a junior data analyst working for Cyclistic, a fictional company based on the Divvy bike-share system in Chicago. My task is to identify the differences between casual riders and members and use my analysis to formulate recommendations that could help motivate casual riders to become members.
 ## Tool Used
 Excel, DAX Studio, and RStudio
 ## Ask Phase
@@ -24,7 +22,7 @@ Excel, DAX Studio, and RStudio
   - 10 of the 12 CSV files used text qualifiers, although this appeared to be unnecessary.
 ## Process Phase
 - I used Excel Power Query to transform and combine the 12 months of data.
-- To avoid the limitations of Excel, the dataset was loaded into the data model as a connection. Then, using DAX Studio—which detects the data model—I exported the dataset as a new CSV file named *'cyclistic_full_year.csv.'*
+- To avoid the limitations of Excel, the dataset was loaded into the data model as a connection. Then, using DAX Studio—which detects the data model—to export the dataset as a new CSV file named *'cyclistic_full_year.csv.'*
 - Further data manipulation and cleaning were done in R Studio. Please see the [Markdown](https://github.com/jonavrilyo/Google-Data-Analytics-Case-Study-Cyclistic-Bike-Share/blob/main/cyclistic_2023.md) file.
 ## Key Findings
 - Although the number of members nearly doubles that of casual riders, the total ride length between the two groups isn’t as significant as expected.
