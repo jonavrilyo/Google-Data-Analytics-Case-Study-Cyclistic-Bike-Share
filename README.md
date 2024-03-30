@@ -1,7 +1,7 @@
 # Google Data Analytics Capstone Project   
 ## Cyclistic Bike-Share Analysis: Converting Casual Riders into Members
 I am a junior data analyst working for Cyclistic, a fictional company based on the Divvy bike-share system in Chicago. My task is to identify the differences between casual riders and members and use my analysis to formulate recommendations that could help motivate casual riders to become members.
-## Tool Used
+## Tools Used
 Excel, DAX Studio, and RStudio
 ## Ask Phase
 - Understand both the business question(s) and task.
