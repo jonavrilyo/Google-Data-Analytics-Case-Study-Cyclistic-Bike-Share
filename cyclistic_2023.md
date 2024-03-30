@@ -1126,7 +1126,7 @@ This significant difference in average ride length accounts for the
 unexpectedly narrow gap in total ride duration between members and
 casual riders.
 
-### Average ride length per month by bike type and user type
+### Average ride length by bike type and user type
 
 ``` r
 cyclistic_2023_final %>%
