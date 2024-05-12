@@ -2,7 +2,7 @@
 ## Cyclistic Bike-Share Analysis: Converting Casual Riders into Members
 I am a junior data analyst working for Cyclistic, a fictional company based on the Divvy bike-share system in Chicago. My task is to identify the differences between casual riders and members and use my analysis to formulate recommendations that could help motivate casual riders to become members.
 ## Tools Used
-Excel, DAX Studio, PostgreSQL (pgAdmin4), and RStudio
+Excel, DAX Studio, PostgreSQL (pgAdmin4), RStudio, and Tableau
 ## Ask Phase
 - Understand both the business question(s) and task.
 - Questions:
